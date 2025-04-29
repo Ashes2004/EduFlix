@@ -6,23 +6,70 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
+  Image,
 } from "react-native";
 
 export default function CoursesScreen() {
   const [query, setQuery] = useState("");
-
+  
   const handleViewAllTrendingFree = () => {
     console.log("Navigate to: All Trending Free Courses");
   };
-
+  
   const handleViewAllTrendingPaid = () => {
     console.log("Navigate to: All Trending Paid Courses");
   };
-
+  
   const handleViewAllRecommended = () => {
     console.log("Navigate to: All Recommended Courses");
   };
 
+  // Course data with images
+  const trendingFreeCourses = [
+    {
+      title: "AI Basics",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
+    },
+    {
+      title: "Intro to Python",
+      image: "https://miro.medium.com/v2/resize:fit:1400/1*l8gJIza6uuj84EyWl0OjSQ.jpeg"
+    },
+    {
+      title: "Web Dev Starter",
+      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
+    }
+  ];
+  
+  const trendingPaidCourses = [
+    {
+      title: "ML with Projects",
+      image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
+    },
+    {
+      title: "Advanced React Native",
+      image: "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
+    },
+    {
+      title: "UI/UX Bootcamp",
+      image: "https://images.unsplash.com/photo-1587440871875-191322ee64b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
+    }
+  ];
+  
+  const recommendedCourses = [
+    {
+      title: "Ethical Hacking",
+      image: "https://images.unsplash.com/photo-1510511459019-5dda7724fd87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
+    },
+    {
+      title: "Chatbot Development",
+      image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
+    },
+    {
+      title: "Career Skills 101",
+      image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
+    }
+  ];
+  
   return (
     <ScrollView
       style={styles.container}
@@ -38,31 +85,24 @@ export default function CoursesScreen() {
           onChangeText={setQuery}
         />
       </View>
-
+      
       {/* Trending Courses */}
       <CourseSection
         title="🔥 Trending (Free)"
-        courses={["AI Basics", "Intro to Python", "Web Dev Starter"]}
+        courses={trendingFreeCourses}
         onViewAll={handleViewAllTrendingFree}
       />
+      
       <CourseSection
         title="💰 Trending (Paid)"
-        courses={[
-          "ML with Projects",
-          "Advanced React Native",
-          "UI/UX Bootcamp",
-        ]}
+        courses={trendingPaidCourses}
         onViewAll={handleViewAllTrendingPaid}
       />
-
+      
       {/* Recommended Courses */}
       <CourseSection
         title="🎯 Recommended for You"
-        courses={[
-          "Ethical Hacking",
-          "Chatbot Development",
-          "Career Skills 101",
-        ]}
+        courses={recommendedCourses}
         onViewAll={handleViewAllRecommended}
       />
     </ScrollView>
@@ -78,11 +118,16 @@ function CourseSection({ title, courses, onViewAll }) {
           <Text style={styles.viewAllText}>View All</Text>
         </TouchableOpacity>
       </View>
+      
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {courses.map((course, index) => (
           <TouchableOpacity key={index} style={styles.courseCard}>
-            <View style={styles.courseBox} />
-            <Text style={styles.courseTitle}>{course}</Text>
+            <Image 
+              source={{ uri: course.image }} 
+              style={styles.courseImage}
+              resizeMode="cover"
+            />
+            <Text style={styles.courseTitle}>{course.title}</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -121,18 +166,22 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     color: "#fff",
-    marginLeft: 20,
     marginBottom: 10,
   },
+  viewAllText: {
+    color: "#E50914",
+    fontSize: 14,
+    fontWeight: "500",
+  },
   courseCard: {
-    width: 140,
-    marginHorizontal: 10,
+    width: 160,
+    marginLeft: 20,
+    marginRight: 5,
     alignItems: "center",
   },
-  courseBox: {
-    width: 140,
-    height: 90,
-    backgroundColor: "#333",
+  courseImage: {
+    width: 160,
+    height: 100,
     borderRadius: 8,
     marginBottom: 6,
   },
@@ -140,10 +189,6 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 14,
     textAlign: "center",
-  },
-  viewAllText: {
-    color: "#E50914",
-    fontSize: 14,
-    fontWeight: "500",
+    marginTop: 5,
   },
 });
