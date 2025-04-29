@@ -1,12 +1,12 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import "./global.css";
 
-const index = () => {
+const Homepage = () => {
   return (
     <View>
-      <Text>index</Text>
+      <Text>Homepage</Text>
     </View>
-  )
-}
+  );
+};
 
-export default index
+export default Homepage;
