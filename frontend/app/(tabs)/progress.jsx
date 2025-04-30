@@ -261,6 +261,8 @@ export default function ProgressScreen() {
 
   const screenWidth = Dimensions.get("window").width - 30;
 
+  const chartWidth = Dimensions.get("window").width - 45;
+
   const chartConfig = {
     backgroundGradientFrom: "#080F28",
     backgroundGradientTo: "#101D42",
@@ -514,7 +516,7 @@ export default function ProgressScreen() {
               },
             ],
           }}
-          width={325}
+          width={chartWidth}
           height={200}
           chartConfig={chartConfig}
           style={styles.chart}
@@ -549,7 +551,7 @@ export default function ProgressScreen() {
         <Text style={styles.chartTitle}>Course Completion</Text>
         <ProgressChart
           data={userData.courseCompletionData}
-          width={325}
+          width={chartWidth}
           height={220}
           strokeWidth={16}
           radius={32}
@@ -612,7 +614,7 @@ export default function ProgressScreen() {
         <Text style={styles.chartTitle}>Monthly XP Progress</Text>
         <LineChart
           data={userData.monthlyProgress}
-          width={325}
+          width={chartWidth}
           height={200}
           chartConfig={{
             ...chartConfig,
