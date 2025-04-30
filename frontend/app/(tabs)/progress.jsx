@@ -1,7 +1,25 @@
-import { View, Text, StyleSheet, ScrollView, Dimensions, TouchableOpacity, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Dimensions,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import React, { useState } from "react";
-import { LineChart, BarChart, PieChart, ProgressChart } from "react-native-chart-kit";
-import { AntDesign, MaterialIcons, Ionicons, FontAwesome5 } from '@expo/vector-icons';
+import {
+  LineChart,
+  BarChart,
+  PieChart,
+  ProgressChart,
+} from "react-native-chart-kit";
+import {
+  AntDesign,
+  MaterialIcons,
+  Ionicons,
+  FontAwesome5,
+} from "@expo/vector-icons";
 
 export default function ProgressScreen() {
   // Enhanced data with Netflix-like education metrics
@@ -13,38 +31,51 @@ export default function ProgressScreen() {
     nextLevelXp: 15000,
     currentStreak: 28, // Days in a row
     longestStreak: 42,
-    
+
     // Course completion metrics
     completedCourses: 7,
     inProgressCourses: 3,
     totalCoursesAvailable: 42,
     completedVideos: 178,
     totalWatchTime: 64.5, // hours
-    
+
     // Weekly activity
     weeklyStudyHours: [4.5, 6.2, 5.0, 7.5, 8.0, 6.5, 5.0],
     weeklyVideosWatched: [3, 5, 4, 7, 8, 6, 4],
-    
+
     // AI Tutor interaction stats
     aiTutorInteractions: {
       questionsAsked: 56,
       conceptsExplained: 38,
       practiceSessionsCompleted: 24,
-      personalizedRecommendations: 15
+      personalizedRecommendations: 15,
     },
-    
+
     // Course completion data
     courseCompletionData: {
-      labels: ["React Mastery", "Python Essentials", "Data Science", "UI/UX Design", "Node.js"],
-      data: [0.85, 0.65, 0.42, 0.90, 0.77],
+      labels: [
+        "React Mastery",
+        "Python Essentials",
+        "Data Science",
+        "UI/UX Design",
+        "Node.js",
+      ],
+      data: [0.85, 0.65, 0.42, 0.9, 0.77],
     },
-    
+
     // Skill distribution
     skillDistribution: {
-      labels: ["Frontend", "Backend", "Mobile", "Data Science", "UI/UX", "DevOps"],
+      labels: [
+        "Frontend",
+        "Backend",
+        "Mobile",
+        "Data Science",
+        "UI/UX",
+        "DevOps",
+      ],
       data: [38, 24, 15, 10, 8, 5],
     },
-    
+
     // Monthly progress
     monthlyProgress: {
       labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
@@ -54,66 +85,66 @@ export default function ProgressScreen() {
         },
       ],
     },
-    
+
     // Recent activities with enhanced detail
     recentActivities: [
-      { 
-        id: 1, 
-        title: "Completed 'Advanced React Hooks'", 
+      {
+        id: 1,
+        title: "Completed 'Advanced React Hooks'",
         type: "video",
         course: "React Mastery",
         instructor: "Sarah Johnson",
-        date: "Today", 
+        date: "Today",
         duration: "32 min",
-        xp: 150 
+        xp: 150,
       },
-      { 
-        id: 2, 
-        title: "Mastered 'JavaScript Promises'", 
+      {
+        id: 2,
+        title: "Mastered 'JavaScript Promises'",
         type: "quiz",
         course: "JavaScript Fundamentals",
         score: "95%",
-        date: "Yesterday", 
-        xp: 75 
+        date: "Yesterday",
+        xp: 75,
       },
-      { 
-        id: 3, 
-        title: "AI Tutor Session: API Integration", 
+      {
+        id: 3,
+        title: "AI Tutor Session: API Integration",
         type: "ai-session",
         concepts: ["RESTful APIs", "Authentication", "Error Handling"],
-        date: "Yesterday", 
+        date: "Yesterday",
         duration: "45 min",
-        xp: 120 
+        xp: 120,
       },
-      { 
-        id: 4, 
-        title: "Coding Challenge: E-commerce Cart", 
+      {
+        id: 4,
+        title: "Coding Challenge: E-commerce Cart",
         type: "challenge",
         difficulty: "Intermediate",
-        date: "Apr 27", 
-        xp: 200 
+        date: "Apr 27",
+        xp: 200,
       },
-      { 
-        id: 5, 
-        title: "Watched 'State Management in Redux'", 
+      {
+        id: 5,
+        title: "Watched 'State Management in Redux'",
         type: "video",
         course: "React Mastery",
         instructor: "Sarah Johnson",
-        date: "Apr 26", 
+        date: "Apr 26",
         duration: "28 min",
-        xp: 85 
+        xp: 85,
       },
-      { 
-        id: 6, 
-        title: "Study Group: React Project Planning", 
+      {
+        id: 6,
+        title: "Study Group: React Project Planning",
         type: "collaboration",
         participants: 4,
-        date: "Apr 25", 
+        date: "Apr 25",
         duration: "60 min",
-        xp: 150 
+        xp: 150,
       },
     ],
-    
+
     // Recommended next courses based on AI analysis
     recommendations: [
       {
@@ -123,7 +154,7 @@ export default function ProgressScreen() {
         difficulty: "Advanced",
         duration: "4h 35m",
         enrolled: 1245,
-        thumbnail: "https://example.com/graphql.jpg"
+        thumbnail: "https://example.com/graphql.jpg",
       },
       {
         id: 2,
@@ -132,7 +163,7 @@ export default function ProgressScreen() {
         difficulty: "Intermediate",
         duration: "3h 20m",
         enrolled: 875,
-        thumbnail: "https://example.com/react-native.jpg"
+        thumbnail: "https://example.com/react-native.jpg",
       },
       {
         id: 3,
@@ -141,59 +172,95 @@ export default function ProgressScreen() {
         difficulty: "Intermediate",
         duration: "2h 50m",
         enrolled: 2130,
-        thumbnail: "https://example.com/redux-toolkit.jpg"
-      }
+        thumbnail: "https://example.com/redux-toolkit.jpg",
+      },
     ],
-    
+
     // Achievements (Netflix-like badges)
     achievements: [
-      { 
-        id: 1, 
-        title: "30-Day Streak", 
-        description: "Study for 30 consecutive days", 
+      {
+        id: 1,
+        title: "30-Day Streak",
+        description: "Study for 30 consecutive days",
         progress: 93,
-        icon: "fire" 
+        icon: "fire",
       },
-      { 
-        id: 2, 
-        title: "Frontend Master", 
-        description: "Complete all frontend development courses", 
+      {
+        id: 2,
+        title: "Frontend Master",
+        description: "Complete all frontend development courses",
         progress: 70,
-        icon: "laptop-code" 
+        icon: "laptop-code",
       },
-      { 
-        id: 3, 
-        title: "Quiz Wizard", 
-        description: "Score 100% on 5 consecutive quizzes", 
+      {
+        id: 3,
+        title: "Quiz Wizard",
+        description: "Score 100% on 5 consecutive quizzes",
         progress: 80,
-        icon: "award" 
+        icon: "award",
       },
-      { 
-        id: 4, 
-        title: "Code Marathon", 
-        description: "Study for more than 10 hours in a single week", 
+      {
+        id: 4,
+        title: "Code Marathon",
+        description: "Study for more than 10 hours in a single week",
         progress: 100,
-        icon: "running" 
+        icon: "running",
       },
     ],
-    
+
     // Learning path progress (Netflix-like seasons)
     learningPath: {
       title: "Full-Stack Web Development",
       progress: 68,
       modules: [
-        { id: 1, title: "Frontend Fundamentals", progress: 100, lessons: 12, completed: 12 },
-        { id: 2, title: "JavaScript Deep Dive", progress: 100, lessons: 15, completed: 15 },
-        { id: 3, title: "React Ecosystem", progress: 80, lessons: 20, completed: 16 },
-        { id: 4, title: "Backend with Node.js", progress: 45, lessons: 18, completed: 8 },
-        { id: 5, title: "Database Design", progress: 20, lessons: 10, completed: 2 },
-        { id: 6, title: "Deployment & DevOps", progress: 0, lessons: 8, completed: 0 },
-      ]
-    }
+        {
+          id: 1,
+          title: "Frontend Fundamentals",
+          progress: 100,
+          lessons: 12,
+          completed: 12,
+        },
+        {
+          id: 2,
+          title: "JavaScript Deep Dive",
+          progress: 100,
+          lessons: 15,
+          completed: 15,
+        },
+        {
+          id: 3,
+          title: "React Ecosystem",
+          progress: 80,
+          lessons: 20,
+          completed: 16,
+        },
+        {
+          id: 4,
+          title: "Backend with Node.js",
+          progress: 45,
+          lessons: 18,
+          completed: 8,
+        },
+        {
+          id: 5,
+          title: "Database Design",
+          progress: 20,
+          lessons: 10,
+          completed: 2,
+        },
+        {
+          id: 6,
+          title: "Deployment & DevOps",
+          progress: 0,
+          lessons: 8,
+          completed: 0,
+        },
+      ],
+    },
   });
 
   const screenWidth = Dimensions.get("window").width - 30;
-  
+
   const chartConfig = {
     backgroundGradientFrom: "#080F28",
     backgroundGradientTo: "#101D42",
@@ -202,7 +269,7 @@ export default function ProgressScreen() {
     barPercentage: 0.5,
     decimalPlaces: 0,
   };
-  
+
   const progressChartConfig = {
     backgroundGradientFrom: "#080F28",
     backgroundGradientTo: "#101D42",
@@ -213,16 +280,18 @@ export default function ProgressScreen() {
   };
 
   const renderActivityIcon = (type) => {
-    switch(type) {
-      case 'video':
-        return <MaterialIcons name="ondemand-video" size={24} color="#0A84FF" />;
-      case 'quiz':
+    switch (type) {
+      case "video":
+        return (
+          <MaterialIcons name="ondemand-video" size={24} color="#0A84FF" />
+        );
+      case "quiz":
         return <AntDesign name="form" size={24} color="#32D74B" />;
-      case 'ai-session':
+      case "ai-session":
         return <MaterialIcons name="smart-toy" size={24} color="#BF5AF2" />;
-      case 'challenge':
+      case "challenge":
         return <FontAwesome5 name="laptop-code" size={24} color="#FF9F0A" />;
-      case 'collaboration':
+      case "collaboration":
         return <Ionicons name="people" size={24} color="#FF375F" />;
       default:
         return <AntDesign name="star" size={24} color="#0A84FF" />;
@@ -247,7 +316,12 @@ export default function ProgressScreen() {
           <View style={styles.profileInfo}>
             <Text style={styles.username}>{userData.username}</Text>
             <View style={styles.levelProgressContainer}>
-              <View style={[styles.levelProgressBar, {width: `${getLevelProgress()}%`}]} />
+              <View
+                style={[
+                  styles.levelProgressBar,
+                  { width: `${getLevelProgress()}%` },
+                ]}
+              />
               <Text style={styles.levelProgressText}>
                 {userData.totalXp} / {userData.nextLevelXp} XP
               </Text>
@@ -260,7 +334,7 @@ export default function ProgressScreen() {
           <Text style={styles.streakLabel}>day streak</Text>
         </View>
       </View>
-      
+
       {/* Quick Stats */}
       <View style={styles.statsRow}>
         <View style={styles.statCard}>
@@ -275,7 +349,9 @@ export default function ProgressScreen() {
         </View>
         <View style={styles.statCard}>
           <MaterialIcons name="smart-toy" size={22} color="#BF5AF2" />
-          <Text style={styles.statValue}>{userData.aiTutorInteractions.questionsAsked}</Text>
+          <Text style={styles.statValue}>
+            {userData.aiTutorInteractions.questionsAsked}
+          </Text>
           <Text style={styles.statLabel}>AI Sessions</Text>
         </View>
         <View style={styles.statCard}>
@@ -284,7 +360,7 @@ export default function ProgressScreen() {
           <Text style={styles.statLabel}>Courses</Text>
         </View>
       </View>
-      
+
       {/* Continue Learning Section */}
       <View style={styles.sectionContainer}>
         <View style={styles.sectionHeader}>
@@ -293,28 +369,41 @@ export default function ProgressScreen() {
             <Text style={styles.seeAllText}>See All</Text>
           </TouchableOpacity>
         </View>
-        
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
-          {userData.learningPath.modules.filter(m => m.progress > 0 && m.progress < 100).map((module) => (
-            <TouchableOpacity key={module.id} style={styles.courseCard}>
-              <View style={styles.courseCardHeader}>
-                <FontAwesome5 name="react" size={24} color="#0A84FF" />
-                <View style={styles.courseProgressBadge}>
-                  <Text style={styles.courseProgressText}>{module.progress}%</Text>
+
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.horizontalScroll}
+        >
+          {userData.learningPath.modules
+            .filter((m) => m.progress > 0 && m.progress < 100)
+            .map((module) => (
+              <TouchableOpacity key={module.id} style={styles.courseCard}>
+                <View style={styles.courseCardHeader}>
+                  <FontAwesome5 name="react" size={24} color="#0A84FF" />
+                  <View style={styles.courseProgressBadge}>
+                    <Text style={styles.courseProgressText}>
+                      {module.progress}%
+                    </Text>
+                  </View>
                 </View>
-              </View>
-              <Text style={styles.courseTitle}>{module.title}</Text>
-              <View style={styles.courseProgressBar}>
-                <View style={[styles.courseProgress, {width: `${module.progress}%`}]} />
-              </View>
-              <Text style={styles.courseStats}>
-                {module.completed}/{module.lessons} lessons
-              </Text>
-            </TouchableOpacity>
-          ))}
+                <Text style={styles.courseTitle}>{module.title}</Text>
+                <View style={styles.courseProgressBar}>
+                  <View
+                    style={[
+                      styles.courseProgress,
+                      { width: `${module.progress}%` },
+                    ]}
+                  />
+                </View>
+                <Text style={styles.courseStats}>
+                  {module.completed}/{module.lessons} lessons
+                </Text>
+              </TouchableOpacity>
+            ))}
         </ScrollView>
       </View>
-      
+
       {/* AI Tutor Stats */}
       <View style={styles.aiTutorContainer}>
         <View style={styles.aiTutorHeader}>
@@ -323,83 +412,109 @@ export default function ProgressScreen() {
           </View>
           <Text style={styles.aiTutorTitle}>Your AI Tutor Sessions</Text>
         </View>
-        
+
         <View style={styles.aiTutorStats}>
           <View style={styles.aiTutorStat}>
-            <Text style={styles.aiStatValue}>{userData.aiTutorInteractions.questionsAsked}</Text>
+            <Text style={styles.aiStatValue}>
+              {userData.aiTutorInteractions.questionsAsked}
+            </Text>
             <Text style={styles.aiStatLabel}>Questions Asked</Text>
           </View>
           <View style={styles.aiTutorStat}>
-            <Text style={styles.aiStatValue}>{userData.aiTutorInteractions.conceptsExplained}</Text>
+            <Text style={styles.aiStatValue}>
+              {userData.aiTutorInteractions.conceptsExplained}
+            </Text>
             <Text style={styles.aiStatLabel}>Concepts Explained</Text>
           </View>
           <View style={styles.aiTutorStat}>
-            <Text style={styles.aiStatValue}>{userData.aiTutorInteractions.practiceSessionsCompleted}</Text>
+            <Text style={styles.aiStatValue}>
+              {userData.aiTutorInteractions.practiceSessionsCompleted}
+            </Text>
             <Text style={styles.aiStatLabel}>Practice Sessions</Text>
           </View>
         </View>
-        
+
         <TouchableOpacity style={styles.aiTutorButton}>
-          <Text style={styles.aiTutorButtonText}>Start New AI Tutor Session</Text>
+          <Text style={styles.aiTutorButtonText}>
+            Start New AI Tutor Session
+          </Text>
         </TouchableOpacity>
       </View>
-      
+
       {/* Learning Path Progress */}
       <View style={styles.sectionContainer}>
         <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Learning Path: {userData.learningPath.title}</Text>
-          <Text style={styles.progressPercentage}>{userData.learningPath.progress}%</Text>
+          <Text style={styles.sectionTitle}>
+            Learning Path: {userData.learningPath.title}
+          </Text>
+          <Text style={styles.progressPercentage}>
+            {userData.learningPath.progress}%
+          </Text>
         </View>
-        
+
         <View style={styles.learningPathContainer}>
           {userData.learningPath.modules.map((module, index) => (
             <TouchableOpacity key={module.id} style={styles.pathModule}>
-              <View style={[
-                styles.moduleIcon, 
-                module.progress === 100 ? styles.moduleCompleted : 
-                module.progress > 0 ? styles.moduleInProgress : styles.moduleNotStarted
-              ]}>
+              <View
+                style={[
+                  styles.moduleIcon,
+                  module.progress === 100
+                    ? styles.moduleCompleted
+                    : module.progress > 0
+                    ? styles.moduleInProgress
+                    : styles.moduleNotStarted,
+                ]}
+              >
                 <Text style={styles.moduleNumber}>{index + 1}</Text>
               </View>
               <View style={styles.moduleInfo}>
                 <Text style={styles.moduleName}>{module.title}</Text>
                 <View style={styles.moduleProgressContainer}>
-                  <View style={[styles.moduleProgressBar, {width: `${module.progress}%`}]} />
+                  <View
+                    style={[
+                      styles.moduleProgressBar,
+                      { width: `${module.progress}%` },
+                    ]}
+                  />
                 </View>
                 <Text style={styles.moduleProgressText}>
                   {module.completed}/{module.lessons} lessons completed
                 </Text>
               </View>
-              <MaterialIcons 
-                name={module.progress === 100 ? "check-circle" : "chevron-right"} 
-                size={24} 
-                color={module.progress === 100 ? "#32D74B" : "#8E8E93"} 
+              <MaterialIcons
+                name={
+                  module.progress === 100 ? "check-circle" : "chevron-right"
+                }
+                size={24}
+                color={module.progress === 100 ? "#32D74B" : "#8E8E93"}
               />
             </TouchableOpacity>
           ))}
         </View>
       </View>
-      
+
       {/* Weekly Activity */}
       <View style={styles.chartContainer}>
         <Text style={styles.chartTitle}>Weekly Study Activity</Text>
         <BarChart
           data={{
             labels: ["M", "T", "W", "T", "F", "S", "S"],
-            datasets: [{ 
-              data: userData.weeklyStudyHours,
-              colors: [
-                (opacity = 1) => `rgba(10, 132, 255, ${opacity})`,
-                (opacity = 1) => `rgba(48, 209, 88, ${opacity})`,
-                (opacity = 1) => `rgba(94, 92, 230, ${opacity})`,
-                (opacity = 1) => `rgba(255, 159, 10, ${opacity})`,
-                (opacity = 1) => `rgba(255, 69, 58, ${opacity})`,
-                (opacity = 1) => `rgba(191, 90, 242, ${opacity})`,
-                (opacity = 1) => `rgba(172, 142, 104, ${opacity})`,
-              ]
-            }],
+            datasets: [
+              {
+                data: userData.weeklyStudyHours,
+                colors: [
+                  (opacity = 1) => `rgba(10, 132, 255, ${opacity})`,
+                  (opacity = 1) => `rgba(48, 209, 88, ${opacity})`,
+                  (opacity = 1) => `rgba(94, 92, 230, ${opacity})`,
+                  (opacity = 1) => `rgba(255, 159, 10, ${opacity})`,
+                  (opacity = 1) => `rgba(255, 69, 58, ${opacity})`,
+                  (opacity = 1) => `rgba(191, 90, 242, ${opacity})`,
+                  (opacity = 1) => `rgba(172, 142, 104, ${opacity})`,
+                ],
+              },
+            ],
           }}
-          width={screenWidth}
+          width={325}
           height={200}
           chartConfig={chartConfig}
           style={styles.chart}
@@ -428,21 +543,42 @@ export default function ProgressScreen() {
           </View>
         </View>
       </View>
-      
+
       {/* Course Completion Progress Chart */}
       <View style={styles.chartContainer}>
         <Text style={styles.chartTitle}>Course Completion</Text>
         <ProgressChart
           data={userData.courseCompletionData}
-          width={screenWidth}
+          width={325}
           height={220}
           strokeWidth={16}
           radius={32}
           chartConfig={progressChartConfig}
-          hideLegend={false}
+          hideLegend={true}
         />
+        <View style={styles.customLegend}>
+          {userData.courseCompletionData.labels.map((label, index) => (
+            <View key={index} style={styles.legendItem}>
+              <View
+                style={[
+                  styles.legendColorBox,
+                  {
+                    backgroundColor: progressChartConfig.color(
+                      index / userData.courseCompletionData.labels.length,
+                      1
+                    ),
+                  },
+                ]}
+              />
+              <Text style={styles.legendLabel}>
+                {label} -{" "}
+                {(userData.courseCompletionData.data[index] * 100).toFixed(0)}%
+              </Text>
+            </View>
+          ))}
+        </View>
       </View>
-      
+
       {/* Skill Distribution */}
       <View style={styles.chartContainer}>
         <Text style={styles.chartTitle}>Your Skill Distribution</Text>
@@ -451,7 +587,12 @@ export default function ProgressScreen() {
             name: label,
             population: userData.skillDistribution.data[index],
             color: [
-              '#0A84FF', '#32D74B', '#FF9F0A', '#BF5AF2', '#FF375F', '#64D2FF'
+              "#0A84FF",
+              "#32D74B",
+              "#FF9F0A",
+              "#BF5AF2",
+              "#FF375F",
+              "#64D2FF",
             ][index],
             legendFontColor: "#FFFFFF",
             legendFontSize: 12,
@@ -465,27 +606,27 @@ export default function ProgressScreen() {
           absolute
         />
       </View>
-      
+
       {/* Monthly Learning Progress */}
       <View style={styles.chartContainer}>
         <Text style={styles.chartTitle}>Monthly XP Progress</Text>
         <LineChart
           data={userData.monthlyProgress}
-          width={screenWidth}
+          width={325}
           height={200}
           chartConfig={{
             ...chartConfig,
             propsForDots: {
               r: "6",
               strokeWidth: "2",
-              stroke: "#101D42"
-            }
+              stroke: "#101D42",
+            },
           }}
           bezier
           style={styles.chart}
         />
       </View>
-      
+
       {/* Recommendations Section */}
       <View style={styles.sectionContainer}>
         <View style={styles.sectionHeader}>
@@ -494,8 +635,12 @@ export default function ProgressScreen() {
             <Text style={styles.seeAllText}>See All</Text>
           </TouchableOpacity>
         </View>
-        
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
+
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.horizontalScroll}
+        >
           {userData.recommendations.map((course) => (
             <TouchableOpacity key={course.id} style={styles.recommendationCard}>
               <View style={styles.recommendationThumbnail}>
@@ -506,15 +651,19 @@ export default function ProgressScreen() {
               </View>
               <Text style={styles.recommendationTitle}>{course.title}</Text>
               <View style={styles.recommendationDetails}>
-                <Text style={styles.recommendationDifficulty}>{course.difficulty}</Text>
+                <Text style={styles.recommendationDifficulty}>
+                  {course.difficulty}
+                </Text>
                 <Text style={styles.recommendationDot}>•</Text>
-                <Text style={styles.recommendationDuration}>{course.duration}</Text>
+                <Text style={styles.recommendationDuration}>
+                  {course.duration}
+                </Text>
               </View>
             </TouchableOpacity>
           ))}
         </ScrollView>
       </View>
-      
+
       {/* Recent Activities Section */}
       <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>Recent Activities</Text>
@@ -545,25 +694,46 @@ export default function ProgressScreen() {
           </View>
         ))}
       </View>
-      
+
       {/* Achievements Section */}
       <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>Achievements</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.horizontalScroll}
+        >
           {userData.achievements.map((achievement) => (
             <View key={achievement.id} style={styles.achievementCard}>
-              <View style={[
-                styles.achievementIconContainer,
-                achievement.progress === 100 ? styles.achievementCompleted : styles.achievementInProgress
-              ]}>
-                <FontAwesome5 name={achievement.icon} size={32} color={achievement.progress === 100 ? "#FFFFFF" : "#0A84FF"} />
+              <View
+                style={[
+                  styles.achievementIconContainer,
+                  achievement.progress === 100
+                    ? styles.achievementCompleted
+                    : styles.achievementInProgress,
+                ]}
+              >
+                <FontAwesome5
+                  name={achievement.icon}
+                  size={32}
+                  color={achievement.progress === 100 ? "#FFFFFF" : "#0A84FF"}
+                />
               </View>
               <Text style={styles.achievementTitle}>{achievement.title}</Text>
-              <Text style={styles.achievementDesc}>{achievement.description}</Text>
+              <Text style={styles.achievementDesc}>
+                {achievement.description}
+              </Text>
               <View style={styles.achievementProgressContainer}>
-                <View style={[styles.achievementProgress, {width: `${achievement.progress}%`}]} />
+                <View
+                  style={[
+                    styles.achievementProgress,
+                    { width: `${achievement.progress}%` },
+                  ]}
+                />
               </View>
-              <Text style={styles.achievementProgressText}>{achievement.progress}%</Text>
+              <Text style={styles.achievementProgressText}>
+                {achievement.progress}%
+              </Text>
             </View>
           ))}
         </ScrollView>
@@ -578,14 +748,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#050A18",
     padding: 15,
   },
-  
+
   // Profile Header
   profileHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     marginVertical: 20,
-    marginRight:50
+    marginRight: 50,
   },
   profileLeft: {
     flexDirection: "row",
@@ -663,7 +833,7 @@ const styles = StyleSheet.create({
     color: "#8E8E93",
     fontSize: 12,
   },
-  
+
   // Stats Row
   statsRow: {
     flexDirection: "row",
@@ -688,7 +858,7 @@ const styles = StyleSheet.create({
     color: "#8E8E93",
     fontSize: 11,
   },
-  
+
   // Section Container
   sectionContainer: {
     backgroundColor: "#101D42",
@@ -719,14 +889,14 @@ const styles = StyleSheet.create({
     color: "#0A84FF",
     fontSize: 14,
   },
-  
+
   // Horizontal Scroll
   horizontalScroll: {
     flexDirection: "row",
     marginLeft: -5,
     marginRight: -5,
   },
-  
+
   // Course Cards
   courseCard: {
     width: 160,
@@ -774,7 +944,7 @@ const styles = StyleSheet.create({
     color: "#8E8E93",
     fontSize: 12,
   },
-  
+
   // AI Tutor Container
   aiTutorContainer: {
     backgroundColor: "#101D42",
@@ -833,7 +1003,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "600",
   },
-  
+
   // Learning Path
   learningPathContainer: {
     marginTop: 5,
@@ -892,15 +1062,13 @@ const styles = StyleSheet.create({
     color: "#8E8E93",
     fontSize: 12,
   },
-  
+
   // Chart Container
   chartContainer: {
     backgroundColor: "#101D42",
     borderRadius: 16,
     padding: 16,
     marginBottom: 20,
-    
-    
   },
   chartTitle: {
     color: "#FFFFFF",
@@ -910,9 +1078,7 @@ const styles = StyleSheet.create({
   },
   chart: {
     borderRadius: 16,
-    marginHorizontal: -8,
-    
-    
+    //marginHorizontal: -8,
   },
   weeklyStatsRow: {
     flexDirection: "row",
@@ -933,7 +1099,27 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginTop: 2,
   },
-  
+  customLegend: {
+    marginTop: 12,
+    flexDirection: "column",
+    alignItems: "flex-start",
+  },
+  legendItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 8,
+  },
+  legendColorBox: {
+    width: 12,
+    height: 12,
+    marginRight: 8,
+    borderRadius: 2,
+  },
+  legendLabel: {
+    color: "#FFFFFF",
+    fontSize: 14,
+  },
+
   // Recommendation Cards
   recommendationCard: {
     width: 220,
@@ -985,7 +1171,7 @@ const styles = StyleSheet.create({
     color: "#8E8E93",
     fontSize: 12,
   },
-  
+
   // Activity Items
   activityItem: {
     flexDirection: "row",
@@ -1041,7 +1227,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "bold",
   },
-  
+
   // Achievement Cards
   achievementCard: {
     width: 150,
