@@ -1,4 +1,6 @@
+import { useRouter } from "expo-router";
 import { useState } from "react";
+import { useNavigation } from '@react-navigation/native';
 import {
   View,
   Text,
@@ -11,6 +13,7 @@ import {
 
 export default function CoursesScreen() {
   const [query, setQuery] = useState("");
+  const router = useRouter();
   
   const handleViewAllTrendingFree = () => {
     console.log("Navigate to: All Trending Free Courses");
@@ -110,6 +113,21 @@ export default function CoursesScreen() {
 }
 
 function CourseSection({ title, courses, onViewAll }) {
+  // Use React Navigation's navigation hook instead of Expo Router
+  const navigation = useNavigation();
+  
+  const handleCoursePress = (course) => {
+    try {
+      // Use React Navigation's navigate method since you're using Tab Navigator
+      navigation.navigate("courseViewer", { 
+        course: course 
+      });
+      console.log(`Navigating to profile with course: ${course.title}`);
+    } catch (error) {
+      console.error("Navigation error:", error);
+    }
+  };
+  
   return (
     <View style={styles.section}>
       <View style={styles.sectionHeader}>
@@ -121,7 +139,11 @@ function CourseSection({ title, courses, onViewAll }) {
       
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {courses.map((course, index) => (
-          <TouchableOpacity key={index} style={styles.courseCard}>
+          <TouchableOpacity 
+            onPress={() => handleCoursePress(course)} 
+            key={index} 
+            style={styles.courseCard}
+          >
             <Image 
               source={{ uri: course.image }} 
               style={styles.courseImage}

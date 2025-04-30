@@ -1,19 +1,11 @@
-import { View, Platform } from "react-native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// app/(tabs)/_layout.jsx
+import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { Platform } from "react-native";
 
-// Screens
-import HomeScreen from "../app/(tabs)/index";
-import CoursesScreen from "../app/(tabs)/courses";
-import AiTutorScreen from "../app/(tabs)/ai-tutor";
-import ProgressScreen from "../app/(tabs)/progress";
-import ProfileScreen from "../app/(tabs)/profile";
-
-const Tab = createBottomTabNavigator();
-
-const BottomTab = () => {
+export default function TabLayout() {
   return (
-    <Tab.Navigator
+    <Tabs
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarShowLabel: true,
@@ -30,38 +22,28 @@ const BottomTab = () => {
         },
         tabBarIcon: ({ color, size, focused }) => {
           let iconName;
-
           switch (route.name) {
-            case "Home":
+            case "index":
               iconName = "home-outline";
               break;
-            case "Courses":
+            case "courses":
               iconName = "book-outline";
               break;
-            case "AI Tutor":
+            case "ai-tutor":
               iconName = "chatbubble-ellipses-outline";
               break;
-            case "Progress":
+            case "progress":
               iconName = "stats-chart-outline";
               break;
-            case "Profile":
+            case "profile":
               iconName = "person-outline";
               break;
           }
-
           return (
             <Ionicons name={iconName} size={focused ? 24 : 22} color={color} />
           );
         },
       })}
-    >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Courses" component={CoursesScreen} />
-      <Tab.Screen name="AI Tutor" component={AiTutorScreen} />
-      <Tab.Screen name="Progress" component={ProgressScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
-    </Tab.Navigator>
+    />
   );
-};
-
-export default BottomTab;
+}
