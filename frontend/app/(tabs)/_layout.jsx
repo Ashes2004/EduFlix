@@ -23,7 +23,7 @@ export default function TabLayout() {
         tabBarIcon: ({ color, size, focused }) => {
           let iconName;
           switch (route.name) {
-            case "index":
+            case "home":
               iconName = "home-outline";
               break;
             case "courses":

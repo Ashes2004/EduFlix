@@ -15,6 +15,7 @@ const Login = () => {
   const handleLogin = () => {
     // TODO: integrate backend login
     console.log("Logging in:", { email, password });
+    router.push('/(tabs)/home');
   };
 
   return (
