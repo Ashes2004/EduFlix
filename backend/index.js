@@ -8,7 +8,7 @@ const app = express();
 connectDB();
 app.use(express.json());
 
-app.use("/api/user")
+app.use("/api/user" , UserRoute);
 app.use("/api/ai/quiz", QuizRoutes);
 app.use("/api/ai/note", NotetutorRoute);
 app.use("/api/ai/chat", GeneralAIRoute);
