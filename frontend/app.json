@@ -1,11 +1,10 @@
 {
   "expo": {
-    "name": "EduFlix",
-    "slug": "EduFlix",
+    "name": "frontend",
+    "slug": "frontend",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "frontend",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -13,22 +12,20 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.ashes2004.EduFlix"
+      "edgeToEdgeEnabled": true,
+      "package": "com.ashes2004.frontend"
     },
     "web": {
       "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "output": "static"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
@@ -39,11 +36,9 @@
       "typedRoutes": true
     },
     "extra": {
-      "router": {
-        "origin": false
-      },
+      "router": {},
       "eas": {
-        "projectId": "5b03af55-c4ba-45a5-ae29-f414b24d829e"
+        "projectId": "8399b569-b924-4a9c-8d38-017779aab3aa"
       }
     }
   }
