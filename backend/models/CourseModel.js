@@ -10,11 +10,12 @@ const videoSchema = new mongoose.Schema({
 
 const courseSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  instructor: { type: String },
+  instructor: { type: mongoose.Schema.Types.ObjectId, ref: 'Tutor' },
   thumbnail: { type: String, required: true },
   description: { type: String, required: true },
   tags: [{ type: String }],
-  relevantCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }], 
+  likeCount:{type: Number , default: 0},
+  viewCount:{type: Number , default: 0},
   videos: [videoSchema]
 });
 
