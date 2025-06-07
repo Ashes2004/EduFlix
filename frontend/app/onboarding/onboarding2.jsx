@@ -14,7 +14,7 @@ const Onboarding2 = () => {
       
       <View style={styles.imageContainer}>
         <View style={styles.imageWrapper}>
-          <Text style={styles.placeholderText}>[ Image Placeholder ]</Text>
+           <Image source={{ uri: "https://epe.brightspotcdn.com/95/7c/8ecbf5e24d32a9e01f4c37d2e16d/ai-teacher-042023-1286808956-01.jpg" }} style={styles.image} />
           <View style={styles.gradientOverlay} />
         </View>
       </View>
@@ -62,6 +62,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
   },
+   image: {
+  width: '100%',
+  height: '100%',
+  resizeMode: 'cover',
+},
   imageContainer: {
     alignItems: "center",
     marginBottom: 30,

@@ -14,7 +14,7 @@ const Onboarding1 = () => {
       
       <View style={styles.imageContainer}>
         <View style={styles.imageWrapper}>
-          <Text style={styles.placeholderText}>[ Image Placeholder ]</Text>
+         <Image source={{ uri: "https://cdn.pixabay.com/photo/2023/08/04/10/51/ai-generated-8168999_1280.jpg" }} style={styles.image} />
           <View style={styles.gradientOverlay} />
         </View>
       </View>
@@ -65,6 +65,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
   },
+  image: {
+  width: '100%',
+  height: '100%',
+  resizeMode: 'cover',
+},
   imageContainer: {
     alignItems: "center",
     marginBottom: 30,
