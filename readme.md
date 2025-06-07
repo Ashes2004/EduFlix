@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Eduflix Logo](https://via.placeholder.com/200x100/4F46E5/FFFFFF?text=EDUFLIX)
+![Eduflix Logo](https://dummyimage.com/200x100/4F46E5/FFFFFF&text=EDUFLIX)
 
 ### 🚀 Transforming Education Through AI-Powered Learning
 
