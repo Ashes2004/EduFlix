@@ -307,8 +307,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 <div align="center">
+  
+📌 **If you liked the idea, give us a ⭐️ on GitHub to support open-source education!**
 
-### 🌟 Star this repository if you found it helpful!
+[![GitHub Stars](https://img.shields.io/github/stars/Ashes2004/Eduflix?style=social)](https://github.com/Ashes2004/Eduflix/stargazers)
+
+
 
 **Made with ❤️ for the future of education**
 
